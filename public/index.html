@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Life Insurance Quiz&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* CSS Reset */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>*, *::before, *::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom properties */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-color: #4CAF50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-color-hover: #45a049;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--secondary-color: #f5f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--border-color: #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--error-color: #f44336;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--success-color: #4CAF50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Body styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Arial', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Container for the quiz */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: var(--box-shadow);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Progress bar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--secondary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress-bar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 0%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: var(--transition);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Question styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.3;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Options styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.options-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.option {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: var(--transition);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.option:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color-hover);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Checkbox options for multi-select */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.checkbox-option {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: var(--transition);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.checkbox-option:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.checkbox-option.selected {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e8f5e9;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.checkbox-option input[type="checkbox"] {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Input field styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.form-group {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.form-group label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.form-control {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: var(--transition);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.form-control:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.form-control.error {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--error-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.error-message {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--error-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Navigation buttons */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.navigation {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: var(--transition);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-next {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-next:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color-hover);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-back {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--secondary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-back:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0e0e0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Footer text */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.security-notice {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Loading animation */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.spinner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 5px solid rgba(76, 175, 80, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: spin 1s ease-in-out infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spin {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* OTP screen */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-inputs {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 45px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.otp-input:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outline: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.resend-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.timer {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #666;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Phone number input with country code */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.phone-input-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.country-code {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 30%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.phone-input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 70%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Mobile responsiveness */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.quiz-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>box-shadow: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.question-title {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>font-size: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.option {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 12px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 10px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.phone-input-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>gap: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.country-code, .phone-input {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Hide questions by default */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question-slide {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Show active question */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.question-slide.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="quiz-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Progress bar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="progress-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="progress-bar" id="progress-bar"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 1: Gender --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide active" id="question-1" data-question="1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Are you?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Male"&gt;Male&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Female"&gt;Female&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Other"&gt;Other&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 2: Current Insurance --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-2" data-question="2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Do you currently have life insurance?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Yes"&gt;Yes&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="No"&gt;No, I don't have life insurance&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 3: Insurance source --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-3" data-question="3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Where did you get your insurance plan from?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="My bank"&gt;My bank&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Insurance broker"&gt;Insurance broker&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Direct from company"&gt;Direct from company&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Not sure"&gt;Not sure&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 4: Monthly payment --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-4" data-question="4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;How much per month do you pay for your policy?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="I'm not sure"&gt;I'm not sure&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$0-$25"&gt;$0-$25&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$25-$50"&gt;$25-$50&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$50-$100"&gt;$50-$100&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$100+"&gt;$100+&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 5: Reasons for insurance (multi-select) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-5" data-question="5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;What are the biggest reasons you have life insurance?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 14px; margin-bottom: 15px;"&gt;(Select all that apply)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container" id="multi-select-container-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="reason-1" value="Protect my kids well-being"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="reason-1"&gt;Protect my kids well-being&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="reason-2" value="Pay off the mortgage / house"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="reason-2"&gt;Pay off the mortgage / house&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="reason-3" value="Protect my spouse financially"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="reason-3"&gt;Protect my spouse financially&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="reason-4" value="I'm not sure"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="reason-4"&gt;I'm not sure&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-next" id="next-multi-select"&gt;Next&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 6: Age range --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-6" data-question="6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;What age range are you in?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Younger than 20"&gt;Younger than 20&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="21-30"&gt;21-30&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="31-40"&gt;31-40&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="41-50"&gt;41-50&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="51-60"&gt;51-60&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="65+"&gt;65+&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 7: Health issues (multi-select) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-7" data-question="7"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Do you have any major health issues?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 14px; margin-bottom: 15px;"&gt;(Select all that apply)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container" id="multi-select-container-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-1" value="No health issues"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-1"&gt;No health issues&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-2" value="Cancer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-2"&gt;Cancer&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-3" value="Heart attack"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-3"&gt;Heart attack&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-4" value="Stroke"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-4"&gt;Stroke&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-5" value="Diabetes"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-5"&gt;Diabetes&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="checkbox-option"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="checkbox" id="health-6" value="Other"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="health-6"&gt;Other&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-next" id="next-multi-select"&gt;Next&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 8: Employment status --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-8" data-question="8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;What is your employment status?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Employed"&gt;Employed&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Self-Employed"&gt;Self-Employed&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Retired"&gt;Retired&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Unemployed"&gt;Unemployed&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 9: Home ownership --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-9" data-question="9"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Do you own or rent your home?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Own"&gt;Own&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Rent"&gt;Rent&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Other"&gt;Other&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 10: Smoker status --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-10" data-question="10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Are you a smoker?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Yes"&gt;Yes&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="No"&gt;No&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 11: Household income --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-11" data-question="11"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;The annual income of my household is:&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="Less than $60k"&gt;Less than $60k&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$60-80k"&gt;$60-80k&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$80-120k"&gt;$80-120k&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="option" data-value="$120k+"&gt;$120k+&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Question 12: Occupation (free text) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="question-12" data-question="12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;What is your occupation?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="occupation" class="form-control" placeholder="Enter your occupation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="error-message" id="occupation-error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-next" id="next-occupation"&gt;Next&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Loading screen --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="loading-screen" data-question="13"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="loading-container" style="display: block;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="loading-text"&gt;Analyzing your answers...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="spinner"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Lead capture form --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="lead-form" data-question="14"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="question-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="question-title"&gt;Just a few more details to complete your assessment&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="first-name"&gt;First Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="first-name" class="form-control" placeholder="Enter your first name"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="error-message" id="first-name-error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="last-name"&gt;Last Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="last-name" class="form-control" placeholder="Enter your last name"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="error-message" id="last-name-error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="email"&gt;Email&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="email" id="email" class="form-control" placeholder="Enter your email"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="error-message" id="email-error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="form-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label for="phone"&gt;Phone Number&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="phone-input-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select id="country-code" class="form-control country-code"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="+1"&gt;+1 (USA/Canada)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="+44"&gt;+44 (UK)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="+61"&gt;+61 (Australia)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="+64"&gt;+64 (New Zealand)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;option value="+353"&gt;+353 (Ireland)&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Add more country codes as needed --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="tel" id="phone" class="form-control phone-input" placeholder="Enter your phone number"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="error-message" id="phone-error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="navigation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-back" id="back-btn"&gt;Back&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-next" id="submit-lead"&gt;Submit&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- OTP Verification screen --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-slide" id="otp-screen" data-question="15"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="otp-container" style="display: block;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="otp-title"&gt;You're One Step Away!&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="otp-subtitle"&gt;Enter the 4-digit code sent to your phone&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="otp-inputs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="otp-input" maxlength="1" id="otp-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="otp-input" maxlength="1" id="otp-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="otp-input" maxlength="1" id="otp-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="otp-input" maxlength="1" id="otp-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="otp-error" class="error-message"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="btn btn-next" id="verify-otp"&gt;Verify Code&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="resend-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="timer" id="resend-timer"&gt;Resend code in &lt;span id="countdown"&gt;30&lt;/span&gt;s&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="btn" id="resend-code" disabled&gt;Resend Code&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Security notice at the bottom --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="security-notice"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Your Information Is 100% Secure And Safe</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Store quiz answers</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const quizData = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>answers: {},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>userInfo: {}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Variables to track which question is currently shown</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentQuestion = 1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let totalQuestions = 15; // Including the loading and lead form screens</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Get all question slides</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const questionSlides = document.querySelectorAll('.question-slide');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const progressBar = document.getElementById('progress-bar');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update progress bar</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateProgressBar() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const progress = (currentQuestion / totalQuestions) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>progressBar.style.width = `${progress}%`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Show a specific question slide</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function showQuestion(questionNumber) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Hide all questions</p>
+<p class="p1"><span class="Apple-converted-space">                </span>questionSlides.forEach(slide =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>slide.classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Show the current question</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const currentSlide = document.querySelector(`#question-${questionNumber}`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentSlide) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentSlide.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// If we're at a special screen</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (questionNumber === 13) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('loading-screen').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (questionNumber === 14) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('lead-form').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else if (questionNumber === 15) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('otp-screen').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentQuestion = questionNumber;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateProgressBar();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Handle navigation between questions</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function navigateToNextQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Check for conditional logic</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentQuestion === 2) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const hasInsurance = quizData.answers[2];</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// If "No" to insurance, skip questions 3, 4, 5</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (hasInsurance === "No") {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showQuestion(6);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>showQuestion(currentQuestion + 1);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showQuestion(currentQuestion + 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Go back to previous question</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function navigateToPreviousQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Check for conditional logic when going back</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentQuestion === 6 &amp;&amp; quizData.answers[2] === "No") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showQuestion(2);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showQuestion(currentQuestion - 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Check for disqualification</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function checkDisqualification() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Age is 65+</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (quizData.answers[6] === "65+") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>window.location.href = "https://yourlandingpage.com/sorry";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Employment status is Unemployed</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (quizData.answers[8] === "Unemployed") {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>window.location.href = "https://yourlandingpage.com/sorry";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>return false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add click event for option buttons</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.option').forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>option.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const questionId = this.closest('.question-slide').getAttribute('data-question');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const answer = this.getAttribute('data-value');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Store the answer</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizData.answers[questionId] = answer;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Check for disqualification</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (checkDisqualification()) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return; // Stop if disqualified</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Navigate to next question</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>navigateToNextQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add click event for back buttons</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.btn-back').forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', navigateToPreviousQuestion);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Handle multi-select questions</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('#next-multi-select').forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const questionId = this.closest('.question-slide').getAttribute('data-question');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const checkboxes = this.closest('.question-slide').querySelectorAll('input[type="checkbox"]:checked');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (checkboxes.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// No option selected, show error</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>alert('Please select at least one option');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Store all selected values</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const selectedValues = Array.from(checkboxes).map(checkbox =&gt; checkbox.value);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizData.answers[questionId] = selectedValues;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Navigate to next question</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>navigateToNextQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Handle checkbox styling</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.checkbox-option').forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>option.addEventListener('click', function(e) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (e.target.tagName !== 'INPUT') {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const checkbox = this.querySelector('input[type="checkbox"]');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>checkbox.checked = !checkbox.checked;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Toggle selected class</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (this.querySelector('input[type="checkbox"]').checked) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>this.classList.add('selected');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>this.classList.remove('selected');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Handle occupation (free text) submission</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('next-occupation').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const occupation = document.getElementById('occupation').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const errorElement = document.getElementById('occupation-error');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (occupation === '') {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>errorElement.textContent = 'Please enter your occupation';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>errorElement.textContent = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>quizData.answers[12] = occupation;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Show loading screen for 3 seconds before showing lead form</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showQuestion(13);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showQuestion(14);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}, 3000);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Validate email format</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function isValidEmail(email) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const re = /^(([^&lt;&gt;()\[\]\\.,;:\s@"]+(\.[^&lt;&gt;()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-</p>
+</body>
+</html>
